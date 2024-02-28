@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizze</title>
+</head>
+<script>
+    let messaggio = "";
+    let options;
+    const pizze = [
+        {nome:"Margherita", prezzo:"5€"}, 
+        {nome:"Napoli", prezzo:"10€"}, 
+        {nome:"Marinara",prezzo:"20€"},
+        {nome:"Salame",prezzo:"20€"}
+    ];
+    function mostra(){
+        options = document.getElementById("selectPizza")
+        console.log("opzione "+options.value);
+        getPrezzo(options.value);
+        console.log(prezzo);
+        document.getElementById("risul").innerText = options.value + " " + prezzo;
+        
+        
+    }
+
+    function getPrezzo(nomePizza){
+        
+        pizze.forEach(piz=>{
+            if(piz.nome == nomePizza){
+                prezzo = piz.prezzo;
+            }
+        });
+        
+        // for (const index in pizze.nome) {
+        //     console.log(index);
+        //         console.log("pre if "+pizze[index].nome);
+        //     if(pizze[index].nome == pizza ){
+        //         console.log("pizza "+pizze[index].nome);
+        //         console.log("pizzzzzzz "+pizza);
+        //         return pizze[index].prezzo;
+        //     }
+        //     return pizze[index].prezzo;
+        // }
+    }
+
+    
+
+</script>
+<body>
+    <div>
+        <select name="selectPizza" id="selectPizza"  onChange="mostra()">
+            <option value=""></option>
+            <option value="Margherita">Margherita</option>
+            <option value="Napoli">Napoli</option>
+            <option value="Marinara">Marinara</option>
+            <option value="Salame">Salame</option>
+        </select>
+    </div>
+    <p id="risul"></p>
+</body>
+</html>

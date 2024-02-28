@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<style>
+    #tabella, th ,td{
+        padding: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+<script>
+    let prezzoTot = 0
+    let carrello = []
+    let tabella
+    const pizze = [
+        {nome:"Margherita", prezzo:"5"}, 
+        {nome:"Napoli", prezzo:"10"}, 
+        {nome:"Marinara",prezzo:"4"},
+        {nome:"Salame",prezzo:"8"}
+    ];
+
+    function aggiungi(nome){
+        let prezzo = 0
+        pizze.forEach(p => {
+            if(p.nome==nome){
+                prezzo = +p.prezzo
+                let pizza ={"nome":nome, "prezzo":prezzo}
+                carrello.push(pizza)
+                prezzoTot += prezzo
+            }
+        });
+        mostraCarrello();
+    }
+    function mostraCarrello(){
+
+        let ss = sessionStorage.getItem("prezzoTot")
+        if(!ss){
+            sessionStorage.setItem("carrello", JSON.stringify(carrello))
+            sessionStorage.setItem("PrezzoTot", prezzoTot)
+        }else{
+            carrello = getCarrelloStorage()
+            prezzoTot = getPrezzoTotStorage()
+        }
+        document.getElementById("carrello").innerText = `N° pizze : ${carrello.length} prezzo totale : ${prezzoTot}€`
+    
+
+    }
+    function mostraTabella() {
+        let t = ""
+        tabella = document.getElementById("tabella")
+        pizze.forEach(p => {
+            t+=`<tr><td>${p.nome}</td><td>${p.prezzo}€</td><td><button onclick=aggiungi('${p.nome}')>Aggiungi</td></tr>`
+        });
+        mostraCarrello()
+        document.getElementById("carrello").innerText = `N° pizze : ${carrello.length} prezzo totale : ${prezzoTot}€`
+        console.log("tabbella",tabella);
+        tabella.innerHTML = t;
+    }
+    function getCarrelloStorage(){return JSON.parse(sessionStorage.getItem('carrello'))}
+    function getPrezzoTotStorage(){return sessionStorage.getItem("PrezzoTot")}
+
+</script>
+<body class="bg-dark" onload="mostraTabella()">
+    <div>
+        <table  class="table table-striped table-dark" id="tabella">
+            
+        </table>
+    </div>
+
+    <div >
+        <p id="carrello" class="text-white"></p>
+    </div>
+    <button class="btn btn-success" onclick="window.location.href = 'carrello.html'">Mostra Carrello</button>
+    
+</body>
+</html>

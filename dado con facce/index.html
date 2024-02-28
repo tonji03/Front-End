@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dado</title>
+    <script>
+        let partiteGiocate=localStorage.getItem('partite'); 
+        let partiteVinte=0;
+        
+        function tiraDadi(){
+            var imgDado = document.getElementById('imgDado')
+            let nUtente = document.getElementById("inputNumero").value;
+            let dado = Math.floor(Math.random()*6)+1
+            document.getElementById('risultato').innerHTML = dado
+            mostraDado(dado);
+            
+            if (nUtente == dado) {
+                document.getElementById('risultato').innerHTML = "è uscito : <span style='border:1px solid black;padding:3px'>"+ dado +"</span><span style='color:green' > Hai Vinto </span";
+                partiteGiocate++; partiteVinte++;
+                // console.log("Partitevinte "+partiteVinte);
+            }else{
+                document.getElementById('risultato').innerHTML = "è uscito : <span style='border:1px solid black;padding:3px'>"+ dado +"</span> <span style='color:red'> Hai Perso</span>";
+                partiteGiocate++;
+                // console.log("partiteGiocate ",partiteGiocate);
+            }
+            aggiornaGiocata();
+        }
+        function mostraDado(dado) {
+            imgDado.src = dado+".png"
+            imgDado.alt = dado;
+        }
+        function aggiornaGiocata() {
+            localStorage.setItem('partite', partiteGiocate)
+            localStorage.setItem('vinte', partiteVinte)
+            partiteVinte=localStorage.getItem('vinte');
+
+            document.getElementById('partiteVinte').innerText = "Partite vinte : "+ localStorage.getItem('vinte')
+            document.getElementById('partiteGiocate').innerText = "Partite giocate : "+localStorage.getItem('partite')
+        }
+    </script>
+</head>
+<body>
+    <h1>Dadi</h1>
+    <div>
+        <h2 id="partiteVinte"></h2>
+        <h2 id="partiteGiocate"></h2>
+    </div>
+    <div>
+        <label for="inputNumero">Indovina il numero</label>
+        <input name="inputNumero" type="number" id="inputNumero" min="1" max="6">
+    </div>
+    <div>
+        <button onclick="tiraDadi()">GIOCA</button>
+    </div>
+    <p id="risultato"></p>
+    <img alt="dado" id="imgDado">
+</body>
+</html>

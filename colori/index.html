@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <title>Document</title>
+    <style>
+        #quadrato{
+            
+            width: 400px;
+            height: 250px;
+        }
+    </style>
+    <script>
+        let id;
+        let iniziato
+        let divBtn = document.getElementById("div-btn");
+        function inizia() {
+            if( !iniziato){
+                console.log("id nullo");
+                id = setInterval(cambiaColore, 1000);
+            }
+            iniziato = true; 
+        }
+        let cambiaColore = function(){
+            let div = document.getElementById("quadrato");
+            let colore = `rgb(${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)}, ${Math.floor(Math.random()*256)})`;
+            //backtick " ` " usato per String interpolation
+            div.style.backgroundColor = colore;
+            // div.style.backgroundColor = "rgb("+Math.floor(Math.random()*256)+", "+Math.floor(Math.random()*256)+", "+Math.floor(Math.random()*256)+")"
+            if(iniziato){
+                posizioneBottoniBottom();
+            }else{}
+        }
+        let ferma = function(){
+            clearInterval(id);
+            iniziato = false;
+            posizioneBottoniRight();
+
+            console.log(iniziato);   
+        }
+        
+        function posizioneBottoniRight(){
+            document.getElementById("btnClicca").style.display="block";
+            document.getElementById("btnClicca").innerText = "RICOMINCIA";
+            document.getElementById("div-btn").style.paddingTop = "5px";
+            document.getElementById("div-btn").style.paddingTop = "5px";
+            document.getElementById("div-btn").style.paddingLeft = "355px";
+        }
+        function posizioneBottoniBottom(){
+            document.getElementById("btnClicca").style.display="none";
+            document.getElementById("div-btn").style.paddingTop = "255px";
+        }
+        </script>
+</head>
+<body>
+    <div id="quadrato">
+        <div id="div-btn">
+            <button class="btn btn-success" onclick="inizia()" id="btnClicca" >INIZIA</button>
+            <button class="btn btn-warning" onclick="ferma()">FERMA</button>
+        </div>
+    </div>
+</body>
+</html>

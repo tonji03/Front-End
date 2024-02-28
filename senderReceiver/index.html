@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+    <script>
+        function inviaDati(){
+            let nome = document.getElementById('nomeInput').value;
+            
+            localStorage.setItem('nome', nome);
+            window.location.href = "./paginaReceiver.html";
+        }
+        function cancellaDati(){
+            localStorage.setItem('nome', '')
+            document.getElementById('nomeInput').innerText = ' ';
+
+        }
+    </script>
+</head>
+<body>
+    <div><label for="" class="font-weight-bold">Come ti chiami : </label>
+        <input type="text" id="nomeInput" class="form-control">
+    </div>
+    <div><button class="btn btn-success btn-outline-secondary"onclick="inviaDati()">VAI</button></div>
+    <div><button class="btn btn-danger" onclick="cancellaDati()">CANCELLA</button></div>
+    <button class="btn btn-info" onclick="window.location.href = './paginaReceiver.html'">Pagina Receiver</button>
+</body>
+</html>

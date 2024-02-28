@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #tela{
+        width: 500px;
+        height: 500px;
+        background-color: darkblue;
+        position: relative;
+    }
+    #pallina{
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        background-color: gold;
+        position: absolute;
+        /* left: 0px;
+        bottom:450px;
+        top :0px; */
+        
+    }
+</style>
+<script>
+    let id
+
+    let cambiaPosizione = function(){
+        setTimeout(cambiaPosizioneTopRight, 1000);
+        setTimeout(cambiaPosizioneBottomRight, 2000);
+        setTimeout(cambiaPosizioneBottomLeft, 3000);
+        setTimeout(cambiaPosizioneTopLeft, 4000);
+        
+    }
+    function inizia(){
+        
+        if(!id){
+            id = setInterval(cambiaPosizione, 5000);
+        }
+        
+        
+    }
+    function cambiaPosizioneTopRight(){
+        console.log("2");
+        document.getElementById("pallina").style.right = "0px";
+        document.getElementById("pallina").style.top = "0px";
+        document.getElementById("pallina").style.bottom = "450px";
+        document.getElementById("pallina").style.left = "450px";
+    }
+    function cambiaPosizioneTopLeft(){
+        console.log("1");
+        document.getElementById("pallina").style.left = "0px";
+        document.getElementById("pallina").style.top = "0px";
+        document.getElementById("pallina").style.bottom = "450px";
+        document.getElementById("pallina").style.right = "450px";
+    }
+    function cambiaPosizioneBottomRight(){
+        console.log("3");
+        document.getElementById("pallina").style.right = "0px";
+        document.getElementById("pallina").style.bottom = "0px";
+        document.getElementById("pallina").style.top = "450px";
+        document.getElementById("pallina").style.left = "450px";
+    }
+    function cambiaPosizioneBottomLeft(){
+        console.log("4");
+        document.getElementById("pallina").style.left = "0px";
+        document.getElementById("pallina").style.bottom = "0px";
+        document.getElementById("pallina").style.bottom = "450px";
+        document.getElementById("pallina").style.right = "450px";
+    }
+    function ferma(){
+
+    }
+</script>
+<body onload="">
+    <div id="tela">
+        <div id="pallina"></div>
+    </div>
+    <div>
+        <button onclick="inizia()">CLICCA</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semaforo</title>
+    <style>
+        #img-semaforo{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img id="img-semaforo" src="semaforo-rosso.png" alt="semaforo-rosso" onclick="cambiaImmagine();">
+        <p>Clicca sul semaforo</p>
+    </div>
+    <script>
+            let isRosso = true;
+            let cambiaImmagine = function(){
+                let image = document.getElementById("img-semaforo");
+                image.src = isRosso ? "semaforo-verde.png" : "semaforo-rosso.png";
+                isRosso = !isRosso;
+            }
+            /*if(image.alt == "semaforo-verde") {
+                
+                image.src = "semaforo-rosso.png";
+                image.alt = "semaforo-rosso";
+            }else{   
+                console.log(image.src); 
+                image.src = "semaforo-verde.png";
+                image.alt = "semaforo-verde";
+            }*/
+        
+    </script>
+</body>
+</html>

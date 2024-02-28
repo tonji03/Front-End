@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function inizia(){
+        const alfabeto = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+        let parola = document.getElementById("txtNome").value.toLowerCase();
+        
+        
+        
+        let cesare = function(parolaDaCifrare){
+            let parolaCifrata = '';
+            for (let i = 0; i < parolaDaCifrare.length; i++) {
+                let letteraDaCifrare = parolaDaCifrare.charAt(i);
+                parolaCifrata+=crypta(letteraDaCifrare);
+            
+            }
+            return parolaCifrata;
+        }
+
+        let crypta = function(lettera){
+            let index = 0;
+            let letteraDaCifrare;
+            let indexLettera=alfabeto.findIndex((l) => l==lettera);
+            indexLettera+=3
+            if(indexLettera==26){
+                indexLettera=0;
+            }else if(indexLettera==27){
+                indexLettera=1;
+            }else if(indexLettera==28){
+                indexLettera=2;
+            }
+            return alfabeto[indexLettera];
+
+        }
+        let risultato = cesare(parola);
+        document.getElementById("risul").innerText = risultato;
+        
+    }
+
+</script>
+<body>
+    <div><label for="">Nome : </label>
+        <input type="text" id="txtNome">
+    </div>
+    <p id="risul"></p>
+    <button onclick="inizia()">INVIA</button>
+</body>
+</html>

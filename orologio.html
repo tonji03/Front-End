@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orologio</title>
+    <script>
+        let id = 0;
+        function getOra(){
+            let oggi = new Date();
+            return oggi;
+        }
+        let scriviOra = function(){
+            let correggiTempo = function(t){
+                if (t<10) {
+                    t = '0'+ t;
+                }
+                return t;
+            }
+            let ora = getOra();
+            let h = correggiTempo(ora.getHours());
+            let m = correggiTempo(ora.getMinutes());
+            let s = correggiTempo(ora.getSeconds());
+            document.getElementById('risultato').innerText = h+':'+m+':'+s;
+        }
+        
+        let inizia = function(){
+            scriviOra();
+            if(id>=0){
+                id = setInterval(scriviOra, 1);//ripete ogni intervallo specifico
+                console.log(id);
+            }
+            document.getElementById('btnParti').hidden = true;
+            document.getElementById('btnStop').hidden = false;
+        }
+        let ferma = function () {
+            clearInterval(id);
+            document.getElementById('btnStop').hidden = true;
+            document.getElementById('btnParti').hidden = false;
+        }
+
+    </script>
+</head>
+<body onload="inizia()">
+    <p id="risultato"></p>
+    <button hidden="hidden" id="btnParti" onclick="inizia()">Parti</button>
+    <button id="btnStop" onclick="ferma()">Stop</button>
+</body>
+</html>
